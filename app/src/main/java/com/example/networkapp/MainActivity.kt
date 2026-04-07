@@ -73,12 +73,10 @@ class MainActivity : AppCompatActivity() {
     private fun downloadComic (comicId: String) {
         val url = "https://xkcd.com/$comicId/info.0.json"
         requestQueue.add (
-            JsonObjectRequest(url, {
-                showComic(it)
-                saveComic(it)
-            }, {
-                Toast.makeText(this, "Comic not found", Toast.LENGTH_SHORT).show()
-            })
+            JsonObjectRequest(url
+                , {showComic(it)}
+                , {saveComic(it)}
+            )
         )
     }
 
@@ -98,6 +96,12 @@ class MainActivity : AppCompatActivity() {
         } catch (e: Exception) {
             e.printStackTrace()
         }
+    }
+
+    override fun onDestroy() {
+        super.onDestroy()
+
+        file.delete()
     }
 
 
