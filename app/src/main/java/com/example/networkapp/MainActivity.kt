@@ -74,8 +74,9 @@ class MainActivity : AppCompatActivity() {
         val url = "https://xkcd.com/$comicId/info.0.json"
         requestQueue.add (
             JsonObjectRequest(url
-                , {showComic(it)}
-                , {saveComic(it)}
+                , {showComic(it)
+                saveComic(it)}
+                , {}
             )
         )
     }
